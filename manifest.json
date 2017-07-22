@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "name": "Furball",
+  "description": "Adds tons of good features to Scratch by the LLK Group at MIT.",
+  "version": "1.0",
+  "content_scripts": [{
+    "matches": ["https://scratch.mit.edu/*"],
+    "js": ["injected.js"],
+    "css": ["injected.css"]
+  }],
+  "icons": {"128": "icon128x128.png"}
+}
