@@ -1,7 +1,7 @@
 # Furball
 The ultimate [Scratch](https://scratch.mit.edu) experience.
 
-## Install current (In-Development) Version
+## Install Current (In-Development) Version
 - Download the `master` branch as a ZIP.
 - Unzip the ZIP.
 - In development mode, click load unpacked extension in Chrome.
