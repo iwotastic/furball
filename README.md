@@ -1,4 +1,4 @@
-# [!Furball Logo](https://raw.githubusercontent.com/iwotastic/furball/master/icon128x128.png) Furball
+# ![Furball Logo](https://raw.githubusercontent.com/iwotastic/furball/master/icon128x128.png) Furball
 The ultimate [Scratch](https://scratch.mit.edu) experience.
 
 ## Install Current (In-Development) Version
