@@ -90,3 +90,22 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
     document.querySelector(".related > .col-11").className = "col-16"
   }
 }
+
+// Way better toolbar for the forums.
+if (document.getElementById("markItUpId_body")) {
+  const toolbarItems = [
+    {
+      "icon": "format_bold",
+      "number": 1
+    }
+  ]
+
+  let toolbar = document.createElement("div")
+  toolbar.className = "furball-forum-toolbar"
+
+  toolbarItems.forEach(({icon, number}) => {
+    let button = document.createElement("button")
+    button.className = "furball-mi"
+    button
+  })
+}
