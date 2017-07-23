@@ -97,6 +97,14 @@ if (document.getElementById("markItUpId_body")) {
     {
       "icon": "format_bold",
       "number": 1
+    },
+    {
+      "icon": "format_italic",
+      "number": 2
+    },
+    {
+      "icon": "format_underline",
+      "number": 3
     }
   ]
 
@@ -105,7 +113,14 @@ if (document.getElementById("markItUpId_body")) {
 
   toolbarItems.forEach(({icon, number}) => {
     let button = document.createElement("button")
-    button.className = "furball-mi"
-    button
+    button.className = "furball-mi furball-forum-tb-button"
+    button.textContent = icon
+    button.addEventListener("click", e => {
+      e.preventDefault()
+      document.querySelector(".markItUpButton" + number).click()
+    })
+    toolbar.appendChild(button)
   })
+
+  document.querySelector(".markItUpHeader").insertAdjacentElement("afterend", toolbar)
 }

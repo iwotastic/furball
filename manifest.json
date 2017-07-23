@@ -8,5 +8,8 @@
     "js": ["injected.js"],
     "css": ["injected.css"]
   }],
-  "icons": {"128": "icon128x128.png"}
+  "icons": {"128": "icon128x128.png"},
+  "web_accessible_resources": [
+    "MaterialIcons-Regular.woff2"
+  ]
 }
