@@ -37,3 +37,9 @@ chrome.storage.onChanged.addListener((c, n) => {
     username = c.username.newValue
   }
 })
+
+chrome.browserAction.onClicked.addListener(() => {
+  chrome.tabs.create({
+    url: "https://scratch.mit.edu/messages"
+  })
+})
