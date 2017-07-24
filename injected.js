@@ -8,6 +8,12 @@ const path = window.location.pathname
 let searchFilter = ""
 const searchBox = document.querySelector("input[placeholder=Search]")
 
+// Set the username variable to the current user's name.
+if (document.querySelector(isUpdatedPage ? ".profile-name" : ".user-name")) {
+  const username = document.querySelector(isUpdatedPage ? ".profile-name" : ".user-name").textContent
+  chrome.storage.sync.set({username}, () => {});
+}
+
 // Add back the Discuss tab.
 document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"/discuss\">Discuss</a>"
 
