@@ -4,7 +4,7 @@ const init = () => {
   console.log("Starting...");
 
   chrome.alarms.create("checkmessages", {
-    periodInMinutes: 1
+    periodInMinutes: 0.3
   })
 
   console.log("Alarm created!");
