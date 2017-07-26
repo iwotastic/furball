@@ -9,9 +9,6 @@
     "css": ["injected.css"]
   }],
   "icons": {"128": "icon128x128.png"},
-  "web_accessible_resources": [
-    "MaterialIcons-Regular.woff2"
-  ],
   "permissions": [
     "storage",
     "alarms",
@@ -23,5 +20,9 @@
   },
   "browser_action": {
     "default_title": "Furball"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
   }
 }

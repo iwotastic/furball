@@ -59,3 +59,11 @@ chrome.browserAction.onClicked.addListener(() => {
     url: "https://scratch.mit.edu/messages"
   })
 })
+
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.storage.sync.get(["fixedNavbar"], (v) => {
+    if (v["fixedNavbar"] == null || v["fixedNavbar"] == undefined) {
+      chrome.storage.sync.set({fixedNavbar: true}, () => {});
+    }
+  });
+})
