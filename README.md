@@ -1,4 +1,4 @@
-![Furball Logo](https://raw.githubusercontent.com/iwotastic/furball/master/icon128x128.png)
+![Furball Logo](https://raw.githubusercontent.com/iwotastic/furball/master/extension/icon128x128.png)
 # Furball
 The ultimate [Scratch](https://scratch.mit.edu) experience.
 
@@ -9,7 +9,7 @@ The ultimate [Scratch](https://scratch.mit.edu) experience.
 - Download the `master` branch as a ZIP.
 - Unzip the ZIP.
 - In development mode, click load unpacked extension in Chrome.
-- Find and select the the unarchived ZIP.
+- Find and select the folder named `extension` in the unarchived zip.
 - Go to [Scratch](https://scratch.mit.edu)
 
 ## License
