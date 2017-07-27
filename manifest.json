@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Furball",
   "description": "The ultimate Scratch experience.",
-  "version": "1.0",
+  "version": "1.1",
   "content_scripts": [{
     "matches": ["https://scratch.mit.edu/*"],
     "js": ["injected.js"],
