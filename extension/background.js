@@ -5,12 +5,12 @@ const init = () => {
   console.log("Starting...");
 
   chrome.alarms.create("checkmessages", {
-    periodInMinutes: 0.3
+    periodInMinutes: 1
   })
 
   console.log("Alarm created!");
 
-  chrome.storage.sync.get(["username", "notify"], (v) => { {username, notify} = v });
+  chrome.storage.sync.get(["username", "notify"], (v) => { username = v.username; notify = v.notify });
 
   console.log("Username fetched!");
 }
