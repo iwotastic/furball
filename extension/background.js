@@ -51,8 +51,8 @@ chrome.notifications.onClicked.addListener(id => {
 
 chrome.storage.onChanged.addListener((c, n) => {
   if (n === "sync") {
-    username = c.username.newValue || username
-    notify = c.notify.newValue || notify
+    username = (c.username || username).newValue
+    notify = (c.notify || notify).newValue
   }
 })
 
