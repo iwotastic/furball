@@ -1,4 +1,5 @@
 let username = ""
+let notify = true
 let prevNotificationAmt = 0
 const init = () => {
   console.log("Starting...");
@@ -9,7 +10,7 @@ const init = () => {
 
   console.log("Alarm created!");
 
-  chrome.storage.sync.get(["username"], (v) => { username = v["username"] });
+  chrome.storage.sync.get(["username", "notify"], (v) => { {username, notify} = v });
 
   console.log("Username fetched!");
 }
@@ -18,7 +19,7 @@ init()
 
 chrome.alarms.onAlarm.addListener(a => {
   console.log("Alarm recieved.");
-  if (a.name === "checkmessages") {
+  if (a.name === "checkmessages" && notify) {
     console.log("Check recieved.");
     if (username !== "") {
       console.log("Checking messages...");
@@ -50,7 +51,8 @@ chrome.notifications.onClicked.addListener(id => {
 
 chrome.storage.onChanged.addListener((c, n) => {
   if (n === "sync") {
-    username = c.username.newValue
+    username = c.username.newValue || username
+    notify = c.notify.newValue || notify
   }
 })
 
@@ -64,6 +66,9 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.get(["fixedNavbar"], (v) => {
     if (v["fixedNavbar"] == null || v["fixedNavbar"] == undefined) {
       chrome.storage.sync.set({fixedNavbar: true}, () => {});
+    }
+    if (v["notify"] == null || v["notify"] == undefined) {
+      chrome.storage.sync.set({notify: true}, () => {});
     }
   });
 })
