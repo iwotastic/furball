@@ -10,7 +10,7 @@ const init = () => {
 
   console.log("Alarm created!");
 
-  chrome.storage.sync.get(["username", "notify"], (v) => { username = v.username; notify = v.notify });
+  chrome.storage.sync.get(["username", "notify"], (v) => { username = v.username || ""; notify = v.notify });
 
   console.log("Username fetched!");
 }
