@@ -109,6 +109,7 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
   phosphorusFrame.width = "482"
   phosphorusFrame.height = "393"
   phosphorusFrame.className = "furball-hidden"
+  phosphorusFrame.allowFullscreen = true
 
   document.getElementById("player").appendChild(phosphorusFrame)
 
