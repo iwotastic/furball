@@ -51,6 +51,7 @@ searchBox.addEventListener("blur", e => {
 
 // Is it a discuss page
 if (/^\/discuss/.test(path)) {
+  // Fix the search
   document.querySelector("#navsearch > a").addEventListener("click", e => {
     e.preventDefault()
     searchFilter = "forum"
@@ -96,13 +97,4 @@ if (/^\/mystuff\/?$/.test(path)) {
       document.querySelector("[data-control=load-more]").click()
     }
   })
-}
-
-// Is it a project
-if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
-  // Remove studios panel if the project isn't in any
-  if (document.querySelector(".galleries > .box-head > h4").textContent === "Studios (0)") {
-    document.querySelector(".related > .col-5").remove()
-    document.querySelector(".related > .col-11").className = "col-16"
-  }
 }
