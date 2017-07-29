@@ -98,3 +98,38 @@ if (/^\/mystuff\/?$/.test(path)) {
     }
   })
 }
+
+// Is it a project
+if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
+  // Remove studios panel if the project isn't in any
+  const pid = path.match(/^\/projects\/([0-9]+)\/?$/)[1]
+
+  let phosphorusFrame = document.createElement("iframe")
+  phosphorusFrame.src = `https://phosphorus.github.io/embed.html?id=${pid}&auto-start=false`
+  phosphorusFrame.width = "482"
+  phosphorusFrame.height = "393"
+  phosphorusFrame.className = "furball-hidden"
+
+  document.getElementById("player").appendChild(phosphorusFrame)
+
+  let phosphorusToggle = document.createElement("div")
+  phosphorusToggle.className = "action tooltip bottom"
+  phosphorusToggle.innerHTML = `<span class="hovertext"><span class="arrow"></span>Use the Phosphorus Player Instead</span><span class="dropdown-toggle text black">Toggle Phosphorus</span>`
+  phosphorusToggle.addEventListener("click", e => {
+    if (phosphorusFrame.className === "furball-ph-frame") {
+      phosphorusFrame.className = "furball-hidden"
+      document.getElementById("scratch").className = ""
+      document.querySelector("#see-inside").className = "button"
+      document.querySelector(".see-inside.icon").className = "see-inside icon white"
+      document.querySelector("#project .box-head .buttons > a").style.pointerEvents = "all"
+    }else{
+      phosphorusFrame.className = "furball-ph-frame"
+      document.getElementById("scratch").className = "furball-hidden"
+      document.querySelector("#see-inside").className = "button grey"
+      document.querySelector(".see-inside.icon").className = "see-inside icon gray"
+      document.querySelector("#project .box-head .buttons > a").style.pointerEvents = "none"
+    }
+  })
+
+  document.getElementById("cloud-log").insertAdjacentElement("afterend", phosphorusToggle)
+}

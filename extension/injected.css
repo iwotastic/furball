@@ -1,3 +1,9 @@
+/* General Classes */
+
+.furball-hidden {
+  display: none !important;
+}
+
 /* Standardizing the new navbar */
 
 #topnav > .innerwrap {
@@ -157,4 +163,10 @@ body[class] {
 
 .blockpost .postleft {
   overflow: visible !important;
+}
+
+/* Some classes for project pages */
+
+.furball-ph-frame {
+  border: none;
 }
