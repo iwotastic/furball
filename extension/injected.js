@@ -26,6 +26,7 @@ chrome.storage.sync.get(["fixedNavbar"], (v) => {
 
 // Add back the Discuss tab.
 document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"/discuss\">Discuss</a>"
+document.querySelector(isUpdatedPage ? ".link.about" : "li:nth-child(4)").innerHTML = "<a href=\"http://wiki.scratch.mit.edu\">Wiki</a>"
 
 // Use a better search.
 document.querySelector(isUpdatedPage ? "ul > .search > form" : ".container > .search").addEventListener("submit", e => {
