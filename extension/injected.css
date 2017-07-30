@@ -122,24 +122,24 @@ body[class] {
 /* Make the forums pretty! */
 
 .postavatar > a > img {
-  width: 35px;
-  height: 35px;
-  border-radius: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
   position: relative;
-  right: 39px;
-  bottom: 32px;
+  right: 43px;
+  bottom: 34px;
   background-color: #fff;
   box-shadow: 1px 1px 3px #636363;
   transition: all 0.1s ease-in-out;
 }
 
 .postavatar > a > img:hover {
-  width: 40px;
-  height: 40px;
-  border-radius: 30px;
+  width: 44px;
+  height: 44px;
+  border-radius: 44px;
   position: relative;
-  right: 41px;
-  bottom: 34px;
+  right: 45px;
+  bottom: 36px;
   background-color: #fafafa;
   box-shadow: 1px 1px 5px #636363;
 }
