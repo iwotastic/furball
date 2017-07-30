@@ -101,7 +101,7 @@ if (/^\/mystuff\/?$/.test(path)) {
 
 // Is it a project
 if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
-  // Remove studios panel if the project isn't in any
+  // Add switch to phosphorus button
   const pid = path.match(/^\/projects\/([0-9]+)\/?$/)[1]
 
   let phosphorusFrame = document.createElement("iframe")

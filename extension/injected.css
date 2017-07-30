@@ -62,7 +62,7 @@
   border-right: 0 !important;
 }
 
-#pagewrapper > #content {
+body:not(.editor) > #pagewrapper > #content {
   margin-top: 10px !important;
 }
 
@@ -168,5 +168,6 @@ body[class] {
 /* Some classes for project pages */
 
 .furball-ph-frame {
+  margin-top: 10px;
   border: none;
 }
