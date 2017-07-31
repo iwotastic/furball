@@ -10,7 +10,7 @@ const init = () => {
 
   console.log("Alarm created!");
 
-  chrome.storage.sync.get(["username", "notify"], (v) => { username = v.username || ""; notify = v.notify });
+  chrome.storage.sync.get(["username", "notify"], (v) => { username = v.username || ""; notify = v.notify;  });
 
   console.log("Username fetched!");
 }
@@ -63,12 +63,18 @@ chrome.browserAction.onClicked.addListener(() => {
 })
 
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.sync.get(["fixedNavbar"], (v) => {
+  chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbwiki"], (v) => {
     if (v["fixedNavbar"] == null || v["fixedNavbar"] == undefined) {
       chrome.storage.sync.set({fixedNavbar: true}, () => {});
     }
     if (v["notify"] == null || v["notify"] == undefined) {
       chrome.storage.sync.set({notify: true}, () => {});
+    }
+    if (v["bbDiscuss"] == null || v["bbDiscuss"] == undefined) {
+      chrome.storage.sync.set({bbDiscuss: true}, () => {});
+    }
+    if (v["bbWiki"] == null || v["bbWiki"] == undefined) {
+      chrome.storage.sync.set({bbWiki: false}, () => {});
     }
   });
 })
