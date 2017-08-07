@@ -76,5 +76,8 @@ chrome.runtime.onInstalled.addListener(() => {
     if (v["bbWiki"] == null || v["bbWiki"] == undefined) {
       chrome.storage.sync.set({bbWiki: false}, () => {});
     }
+    if (v["forumPopoutReply"] == null || v["forumPopoutReply"] == undefined) {
+      chrome.storage.sync.set({forumPopoutReply: true}, () => {});
+    }
   });
 })
