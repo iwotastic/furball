@@ -1,20 +1,12 @@
-console.log("STart");
+console.log("Start");
 document.addEventListener("DOMContentLoaded", () => {
   console.log("load");
-<<<<<<< HEAD
   chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbWiki", "forumPopoutReply"], (v) => {
     console.log("done");
     document.getElementById("fixed-nav").checked = v["fixedNavbar"]
     document.getElementById("notify").checked = v["notify"]
     document.getElementById("bb-discuss").checked = v["bbDiscuss"]
     document.getElementById("bb-wiki").checked = v["bbWiki"]
-    document.getElementById("forum-popout-reply").checked = v["forumPopoutReply"]
-=======
-  chrome.storage.sync.get(["fixedNavbar", "notify"], (v) => {
-    console.log("done");
-    document.getElementById("fixed-nav").checked = v["fixedNavbar"]
-    document.getElementById("notify").checked = v["notify"]
->>>>>>> parent of 532808b... Add settings for #bringItBack stuff
   });
   document.getElementById("fixed-nav").addEventListener("change", e => {
     console.log("change");
@@ -24,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("change");
     chrome.storage.sync.set({notify: e.target.checked}, () => {console.log("done");});
   })
-<<<<<<< HEAD
   document.getElementById("bb-discuss").addEventListener("change", e => {
     console.log("change");
     chrome.storage.sync.set({bbDiscuss: e.target.checked}, () => {console.log("done");});
@@ -33,10 +24,4 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("change");
     chrome.storage.sync.set({bbWiki: e.target.checked}, () => {console.log("done");});
   })
-  document.getElementById("forum-popout-reply").addEventListener("change", e => {
-    console.log("change");
-    chrome.storage.sync.set({forumPopoutReply: e.target.checked}, () => {console.log("done");});
-  })
-=======
->>>>>>> parent of 532808b... Add settings for #bringItBack stuff
 })

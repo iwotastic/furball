@@ -14,32 +14,12 @@ if (document.querySelector(isUpdatedPage ? ".profile-name" : ".user-name")) {
   chrome.storage.sync.set({username}, () => {});
 }
 
-<<<<<<< HEAD
 // Load settings from Chrome Sync
 chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "forumPopoutReply"], (v) => {
   // #BringItBack
   if (v["bbDiscuss"]) document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"/discuss\">Discuss</a>"
   if (v["bbWiki"]) document.querySelector(isUpdatedPage ? ".link.about" : "li:nth-child(4)").innerHTML = "<a href=\"http://wiki.scratch.mit.edu\">Wiki</a>"
 
-  // Popout reply box
-  if (v["forumPopoutReply"] && document.querySelector("#id_body.markItUpEditor")) {
-    document.querySelector("#reply").className = "furball-popout-reply box"
-    document.querySelector("#id_body.markItUpEditor").placeholder = "Reply..."
-    document.querySelector("#id_body.markItUpEditor").addEventListener("focus", e => {
-      document.querySelector(".form-submit button").className = "furball-reply-submit-button"
-    })
-    document.querySelector("#id_body.markItUpEditor").addEventListener("blur", e => {
-      setTimeout(() => {
-        document.querySelector(".form-submit button").className = "button grey"
-      }, 10)
-    })
-  }
-
-  // Fixed navbar
-=======
-// Load the navbar settings.
-chrome.storage.sync.get(["fixedNavbar"], (v) => {
->>>>>>> parent of 532808b... Add settings for #bringItBack stuff
   document.querySelector(isUpdatedPage ? "#navigation" : "#topnav").style.position = v["fixedNavbar"] ? "fixed" : "static"
   if (isUpdatedPage) {
     document.querySelector("#view").style.marginTop = v["fixedNavbar"] ? "50px" : "0px";
