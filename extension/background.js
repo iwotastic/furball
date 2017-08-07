@@ -65,7 +65,7 @@ chrome.browserAction.onClicked.addListener(() => {
 });
 
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbwiki", "badge"], (v) => {
+  chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbwiki", "badge", "searchEngine"], (v) => {
     if (v["fixedNavbar"] == null || v["fixedNavbar"] == undefined) {
       chrome.storage.sync.set({fixedNavbar: true}, () => {});
     }
@@ -80,6 +80,9 @@ chrome.runtime.onInstalled.addListener(() => {
     }
     if (v["badge"] == null || v["badge"] == undefined) {
       chrome.storage.sync.set({badge: true}, () => {});
+    }
+    if (v["searchEngine"] == null || v["searchEngine"] == undefined) {
+      chrome.storage.sync.set({searchEngine: "google"}, () => {});
     }
   });
 });

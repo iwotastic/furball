@@ -15,7 +15,7 @@ if (document.querySelector(isUpdatedPage ? ".profile-name" : ".user-name")) {
 }
 
 // Load settings from Chrome Sync
-chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "forumPopoutReply"], (v) => {
+chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine"], (v) => {
   // #BringItBack
   if (v["bbDiscuss"]) document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"/discuss\">Discuss</a>"
   if (v["bbWiki"]) document.querySelector(isUpdatedPage ? ".link.about" : "li:nth-child(4)").innerHTML = "<a href=\"http://wiki.scratch.mit.edu\">Wiki</a>"
@@ -26,27 +26,33 @@ chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "forumPopoutReply
   }else{
     document.querySelector("#content").style.paddingTop = v["fixedNavbar"] ? "50px" : "15px";
   }
+
+  // Use a better search.
+  document.querySelector(isUpdatedPage ? "ul > .search > form" : ".container > .search").addEventListener("submit", e => {
+    e.preventDefault()
+    const query = searchBox.value
+    const searchSites = {
+      google: "https://google.com/search?q=site%3Ascratch.mit.edu%2F",
+      bing: "https://bing.com/search?q=site%3Ascratch.mit.edu%2F",
+      ddg: "https://duckduckgo.com/?q=site%3Ascratch.mit.edu%2F",
+      sse: "https://scratch.mit.edu/search/projects?q="
+    }
+    if (searchFilter === "forum") {
+      window.location.assign((v["searchEngine"] !== "sse" ? searchSites[v["searchEngine"]] + "discuss%20" : "https://google.com/search?q=site%3Ascratch.mit.edu%2Fdiscuss%20") + encodeURIComponent(query))
+    }else{
+      const unameRegex = /^@([a-zA-Z0-9\-_]+)$/
+      if (unameRegex.test(query)) {
+        window.location.assign("https://scratch.mit.edu/users/" + query.match(unameRegex)[1])
+      }else{
+        window.location.assign(searchSites[v["searchEngine"]] + "%20" + encodeURIComponent(query).replace(/%20/g, "+"))
+      }
+    }
+  })
 });
 
 // Add back the Discuss tab.
 document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"/discuss\">Discuss</a>"
 document.querySelector(isUpdatedPage ? ".link.about" : "li:nth-child(4)").innerHTML = "<a href=\"http://wiki.scratch.mit.edu\">Wiki</a>"
-
-// Use a better search.
-document.querySelector(isUpdatedPage ? "ul > .search > form" : ".container > .search").addEventListener("submit", e => {
-  e.preventDefault()
-  const query = searchBox.value
-  if (searchFilter === "forum") {
-    window.location.assign("https://google.com/search?q=site%3Ascratch.mit.edu%2Fdiscuss+" + encodeURIComponent(query).replace(/%20/g, "+"))
-  }else{
-    const unameRegex = /^@([a-zA-Z0-9\-_]+)$/
-    if (unameRegex.test(query)) {
-      window.location.assign("https://scratch.mit.edu/users/" + query.match(unameRegex)[1])
-    }else{
-      window.location.assign("https://google.com/search?q=site%3Ascratch.mit.edu+" + encodeURIComponent(query).replace(/%20/g, "+"))
-    }
-  }
-})
 
 // On blur, clear filters
 searchBox.addEventListener("blur", e => {

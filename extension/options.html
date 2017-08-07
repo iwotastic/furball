@@ -10,6 +10,7 @@
   </style>
 </head>
 <body>
+  <h2>General</h2>
   <label>
     <input type="checkbox" id="fixed-nav">
     Keep navbar on top.
@@ -22,14 +23,25 @@
     <input type="checkbox" id="bb-wiki">
     Replace <b>About</b> with <b>Wiki</b>.
   </label>
+  <h2>Search</h2>
+  <label>
+    Use
+    <select id="search-engine">
+      <option value="google">Google</option>
+      <option value="bing">Bing</option>
+      <option value="ddg">DuckDuckGo</option>
+      <option value="sse">the Scratch search engine (will use Google for forums)</option>
+    </select>
+    as the navbar search engine.
+  </label>
   <h2>Notifications</h2>
   <label>
     <input type="checkbox" id="notify">
     Show notifications when I have new messages on Scratch.
-  </label>
+  </label><br>
   <label>
     <input type="checkbox" id="badge">
-    Show the number of Scratch messages I have in the toolbar. 
+    Show the number of Scratch messages I have in the toolbar.
   </label>
   <script src="options.js"></script>
 </body>
