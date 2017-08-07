@@ -14,6 +14,7 @@ if (document.querySelector(isUpdatedPage ? ".profile-name" : ".user-name")) {
   chrome.storage.sync.set({username}, () => {});
 }
 
+<<<<<<< HEAD
 // Load settings from Chrome Sync
 chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "forumPopoutReply"], (v) => {
   // #BringItBack
@@ -35,6 +36,10 @@ chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "forumPopoutReply
   }
 
   // Fixed navbar
+=======
+// Load the navbar settings.
+chrome.storage.sync.get(["fixedNavbar"], (v) => {
+>>>>>>> parent of 532808b... Add settings for #bringItBack stuff
   document.querySelector(isUpdatedPage ? "#navigation" : "#topnav").style.position = v["fixedNavbar"] ? "fixed" : "static"
   if (isUpdatedPage) {
     document.querySelector("#view").style.marginTop = v["fixedNavbar"] ? "50px" : "0px";
@@ -42,6 +47,10 @@ chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "forumPopoutReply
     document.querySelector("#content").style.paddingTop = v["fixedNavbar"] ? "50px" : "15px";
   }
 });
+
+// Add back the Discuss tab.
+document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"/discuss\">Discuss</a>"
+document.querySelector(isUpdatedPage ? ".link.about" : "li:nth-child(4)").innerHTML = "<a href=\"http://wiki.scratch.mit.edu\">Wiki</a>"
 
 // Use a better search.
 document.querySelector(isUpdatedPage ? "ul > .search > form" : ".container > .search").addEventListener("submit", e => {
