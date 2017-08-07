@@ -1,5 +1,6 @@
 let username = ""
 let notify = true
+let badge = true
 let prevNotificationAmt = 0
 const init = () => {
   console.log("Starting...");
@@ -33,7 +34,7 @@ chrome.alarms.onAlarm.addListener(a => {
               message: "You now have " + msg_count + " message" + (msg_count === 1 ? "" : "s") + " on Scratch, click to view."
             });
           }
-          chrome.browserAction.setBadgeText({text: msg_count + ""});
+          chrome.browserAction.setBadgeText({text: (badge ? msg_count : "") + ""});
         }else{
           chrome.browserAction.setBadgeText({text: ""});
         }
@@ -53,6 +54,7 @@ chrome.storage.onChanged.addListener((c, n) => {
   if (n === "sync") {
     username = (c.username || username).newValue;
     notify = (c.notify || notify).newValue;
+    badge = (c.badge || badge).newValue;
   }
 });
 
@@ -63,7 +65,7 @@ chrome.browserAction.onClicked.addListener(() => {
 });
 
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbwiki"], (v) => {
+  chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbwiki", "badge"], (v) => {
     if (v["fixedNavbar"] == null || v["fixedNavbar"] == undefined) {
       chrome.storage.sync.set({fixedNavbar: true}, () => {});
     }
@@ -75,6 +77,9 @@ chrome.runtime.onInstalled.addListener(() => {
     }
     if (v["bbWiki"] == null || v["bbWiki"] == undefined) {
       chrome.storage.sync.set({bbWiki: false}, () => {});
+    }
+    if (v["badge"] == null || v["badge"] == undefined) {
+      chrome.storage.sync.set({badge: true}, () => {});
     }
   });
 });
