@@ -31,36 +31,36 @@ chrome.alarms.onAlarm.addListener(a => {
               iconUrl: "icon128x128.png",
               title: "New Scratch Message!",
               message: "You now have " + msg_count + " message" + (msg_count === 1 ? "" : "s") + " on Scratch, click to view."
-            })
+            });
           }
-          chrome.browserAction.setBadgeText({text: msg_count + ""})
+          chrome.browserAction.setBadgeText({text: msg_count + ""});
         }else{
-          chrome.browserAction.setBadgeText({text: ""})
+          chrome.browserAction.setBadgeText({text: ""});
         }
-        prevNotificationAmt = msg_count
-      })
+        prevNotificationAmt = msg_count;
+      });
     }
   }
-})
+});
 
 chrome.notifications.onClicked.addListener(id => {
   chrome.tabs.create({
     url: "https://scratch.mit.edu/messages"
-  })
-})
+  });
+});
 
 chrome.storage.onChanged.addListener((c, n) => {
   if (n === "sync") {
-    username = (c.username || username).newValue
-    notify = (c.notify || notify).newValue
+    username = (c.username || username).newValue;
+    notify = (c.notify || notify).newValue;
   }
-})
+});
 
 chrome.browserAction.onClicked.addListener(() => {
   chrome.tabs.create({
     url: "https://scratch.mit.edu/messages"
-  })
-})
+  });
+});
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbwiki"], (v) => {
@@ -76,8 +76,5 @@ chrome.runtime.onInstalled.addListener(() => {
     if (v["bbWiki"] == null || v["bbWiki"] == undefined) {
       chrome.storage.sync.set({bbWiki: false}, () => {});
     }
-    if (v["forumPopoutReply"] == null || v["forumPopoutReply"] == undefined) {
-      chrome.storage.sync.set({forumPopoutReply: true}, () => {});
-    }
   });
-})
+});
