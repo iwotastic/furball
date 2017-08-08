@@ -112,7 +112,64 @@ if (/^\/mystuff\/?$/.test(path)) {
 
 // Is it a project
 if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
+  // Add function to install the Furball Extension Suite
+  setTimeout(() => {
+    const install = () => {
+      window.furballExtensionsToInstall = []
+      window.furballExtensionsInstalled = false
+      ScratchExtensions.register("Furball", {
+        blocks: [
+          ["b", "Furball installed?", "fesi"],
+          ["w", "require extension from URL %s", "extReq"],
+          ["w", "wait to install all required extentions", "extIns"]
+        ],
+        url: "https://github.com/iwotastic/furball"
+      }, {
+        _shutdown() {},
+        _getStatus() {
+          return {status: 2, msg: "Good to go!"}
+        },
+        fesi() { return true },
+        extReq(url, cb) {
+          if (url.trim() !== "" && url.length > 16 && url.startsWith("https://")) {
+            window.furballExtensionsToInstall.push(url)
+          }else{
+            console.log("Furball | User Error | Invalid URL: " + url)
+          }
+          cb()
+        },
+        extIns(cb) {
+          if (!window.furballExtensionsInstalled) {
+            const confimationText = "𝓕𝓊𝓇𝒷𝒶𝓁𝓁:\nDo you allow this project to install the following extensions:\n" + window.furballExtensionsToInstall.map(v => {
+              return "- " + v + "\n"
+            }).join("")
+            if (confirm(confimationText)) {
+              window.furballExtensionsInstalled = true
+              const installPromiseChain = window.furballExtensionsToInstall.map(v => new Promise((c, e) => {
+                var scriptToInstall = document.createElement("script")
+                scriptToInstall.async = true
+                scriptToInstall.src = v
+                scriptToInstall.addEventListener("load", c)
+                document.body.appendChild(scriptToInstall)
+              }))
+              Promise.all(installPromiseChain).then(cb)
+            }else{
+              alert("𝓕𝓊𝓇𝒷𝒶𝓁𝓁:\nThis project will now continue without any extensions, this may cause loss of functionallity.")
+              cb()
+            }
+          }else{
+            cb()
+          }
+        }
+      });
+    }
+    var scrTag = document.createElement("script")
+    scrTag.src = "data:text/javascript," + encodeURIComponent("window.setTimeout(()=>{(" + install.toString() + ")();},5000);")
+    document.body.appendChild(scrTag)
+  }, 5000)
+
   // Add switch to phosphorus button
+
   const pid = path.match(/^\/projects\/([0-9]+)\/?$/)[1]
 
   let phosphorusFrame = document.createElement("iframe")
