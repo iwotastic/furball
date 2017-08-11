@@ -190,13 +190,11 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
       document.getElementById("scratch").className = ""
       document.querySelector("#see-inside").className = "button"
       document.querySelector(".see-inside.icon").className = "see-inside icon white"
-      document.querySelector("#project .box-head .buttons > a").style.pointerEvents = "all"
     }else{
       phosphorusFrame.className = "furball-ph-frame"
       document.getElementById("scratch").className = "furball-hidden"
       document.querySelector("#see-inside").className = "button grey"
       document.querySelector(".see-inside.icon").className = "see-inside icon gray"
-      document.querySelector("#project .box-head .buttons > a").style.pointerEvents = "none"
     }
   })
 

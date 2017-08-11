@@ -3,11 +3,13 @@
   "name": "Furball",
   "description": "The ultimate Scratch experience.",
   "version": "1.4",
-  "content_scripts": [{
-    "matches": ["https://*.scratch.mit.edu/*"],
-    "js": ["injected.js"],
-    "css": ["injected.css"]
-  }],
+  "content_scripts": [
+    {
+      "matches": ["https://*.scratch.mit.edu/*"],
+      "js": ["injected.js"],
+      "css": ["injected.css"]
+    }
+  ],
   "icons": {"128": "icon128x128.png"},
   "permissions": [
     "storage",
