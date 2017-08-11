@@ -244,60 +244,7 @@ header + .main.container {
 }
 
 #id_body.markItUpEditor {
-  position: relative;
   resize: vertical;
-}
-
-.furball-popout-reply #id_body.markItUpEditor {
-  position: fixed !important;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-  width: 100vw;
-  background: rgb(52, 52, 52);
-  height: 30px !important;
-  transition: all 0.2s ease-out;
-  resize: none;
-  border-radius: 0;
-  border: none !important;
-  cursor: pointer;
-  color: #fff;
-}
-
-.furball-popout-reply #id_body.markItUpEditor::placeholder {
-  color: #fff;
-}
-
-.furball-popout-reply #id_body.markItUpEditor:focus {
-  cursor: default;
-  position: fixed !important;
-  bottom: 0;
-  left: 0;
-  height: 250px !important;
-  background: rgba(230, 228, 228, 0.95);
-  outline: none !important;
-  box-shadow: -1px 0px 3px rgba(230, 228, 228, 0.95) !important;
-  color: #111;
-}
-
-.furball-popout-reply #id_body.markItUpEditor:focus::placeholder {
-  color: #888888;
-}
-
-.furball-reply-submit-button {
-  position: fixed;
-  bottom: 250px;
-  right: 0px;
-  display: block !important;
-  width: auto !important;
-  height: auto !important;
-  padding: 5px !important;
-  z-index: 2000;
-  border: none !important;
-  border-radius: 1px !important;
-  text-shadow: none !important;
-  background: rgb(52, 52, 52) !important;
-  color: #fff !important;
 }
 
 /* Some classes for project pages */
