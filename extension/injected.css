@@ -269,6 +269,11 @@ header + .main.container {
   resize: vertical;
 }
 
+.markItUpDropMenu {
+  background: transparent !important;
+  margin-right: 0px !important;
+}
+
 .markItUpDropMenu > ul {
   border: none !important;
   border-radius: 3px;
@@ -277,6 +282,30 @@ header + .main.container {
   overflow-y: scroll !important;
   background: #25aff4 !important;
   padding: 0px !important;
+}
+
+.markItUpContainer {
+  background-color: #e6e6e6;
+  border-radius: 5px;
+  padding: 6px 0px 0px 0px !important;
+}
+
+.markItUpContainer textarea {
+  border-radius: 0px !important;
+  border: 0px !important;
+  background: #f9f9f9;
+  transition: all 0.1s !important;
+}
+
+.markItUpContainer iframe {
+  border-radius: 0px !important;
+  border: 0px !important;
+  background: #f9f9f9;
+}
+
+.markItUpContainer textarea:focus {
+  background-color: #f0f0f0;
+  box-shadow: none !important;
 }
 
 .markItUpDropMenu > ul > li {
