@@ -4,6 +4,28 @@
   display: none !important;
 }
 
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(chrome-extension://__MSG_@@extension_id__/MaterialIcons-Regular.woff2) format('woff2')
+}
+
+.furball-mi {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
 /* Standardizing the new navbar */
 
 #topnav > .innerwrap {
@@ -245,6 +267,42 @@ header + .main.container {
 
 #id_body.markItUpEditor {
   resize: vertical;
+}
+
+.markItUpDropMenu > ul {
+  border: none !important;
+  border-radius: 3px;
+  max-height: 160px !important;
+  overflow-x: visible !important;
+  overflow-y: scroll !important;
+  background: #25aff4 !important;
+  padding: 0px !important;
+}
+
+.markItUpDropMenu > ul > li {
+  border: none !important;
+  border-radius: 0px !important;
+  transition: background 0.1s;
+}
+
+.markItUpHeader > ul > .markItUpButton > a {
+  text-indent: 0 !important;
+  font-size: 18px !important;
+  padding-top: 0 !important;
+  background: transparent !important;
+  transition: color 0.1s;
+}
+
+.markItUpHeader > ul > .markItUpButton > a:hover {
+  color: rgb(92, 92, 92);
+}
+
+.markItUpDropMenu > ul > li:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.markItUpDropMenu > ul > li > a {
+  color: #ffffff !important;
 }
 
 /* Some classes for project pages */

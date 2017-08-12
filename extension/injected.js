@@ -110,6 +110,32 @@ if (/^\/mystuff\/?$/.test(path)) {
   })
 }
 
+// Does it have a rich text editor
+if (document.querySelector(".markItUpHeader")) {
+  const replaces = {
+    "1": "format_bold",
+    "2": "format_italic",
+    "3": "format_underlined",
+    "4": "strikethrough_s",
+    "5": "insert_photo",
+    "6": "link",
+    "7": "format_size",
+    "8": "format_list_bulleted",
+    "9": "format_list_numbered",
+    "10": "playlist_add",
+    "11": "insert_comment",
+    "12": "insert_emoticon",
+    "13": "language",
+    "14": "clear_all",
+    "15": "check_circle",
+    "16": "web"
+  }
+  for (var rep in replaces) {
+    document.querySelector(".markItUpButton" + rep + " > a").innerHTML = replaces[rep]
+    document.querySelector(".markItUpButton" + rep + " > a").className = "furball-mi"
+  }
+}
+
 // Is it a project
 if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
   // Add function to install the Furball Extension Suite
