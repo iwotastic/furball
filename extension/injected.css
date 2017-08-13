@@ -278,6 +278,7 @@ header + .main.container {
   border: none !important;
   border-radius: 3px;
   max-height: 160px !important;
+  max-width: 250px !important;
   overflow-x: visible !important;
   overflow-y: scroll !important;
   background: #25aff4 !important;

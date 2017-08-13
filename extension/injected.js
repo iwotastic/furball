@@ -136,6 +136,11 @@ if (document.querySelector(".markItUpHeader")) {
   }
 }
 
+if (/^\/discuss\/topic\/([0-9]+)\/?$/.test(path)) {
+  // Username linkifier (based on https://scratch.mit.edu/discuss/post/2776608/ with a few modifications)
+  Array.from(document.querySelectorAll(".post_body_html,.postsignature")).forEach(post => post.innerHTML = post.innerHTML.replace(/(@([a-zA-Z0-9_-]{2,}))/g, '<a href="https://scratch.mit.edu/users/$2/">$1</a>'));
+}
+
 // Is it a project
 if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
   // Add function to install the Furball Extension Suite
