@@ -146,53 +146,70 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
   // Add function to install the Furball Extension Suite
   setTimeout(() => {
     const install = () => {
-      window.furballExtensionsToInstall = []
-      window.furballExtensionsInstalled = false
-      ScratchExtensions.register("Furball", {
-        blocks: [
-          ["b", "Furball installed?", "fesi"],
-          ["w", "require extension from URL %s", "extReq"],
-          ["w", "wait to install all required extentions", "extIns"]
-        ],
-        url: "https://github.com/iwotastic/furball"
-      }, {
-        _shutdown() {},
-        _getStatus() {
-          return {status: 2, msg: "Good to go!"}
-        },
-        fesi() { return true },
-        extReq(url, cb) {
-          if (url.trim() !== "" && url.length > 16 && url.startsWith("https://")) {
-            window.furballExtensionsToInstall.push(url)
-          }else{
-            console.log("Furball | User Error | Invalid URL: " + url)
-          }
-          cb()
-        },
-        extIns(cb) {
-          if (!window.furballExtensionsInstalled) {
-            const confimationText = "𝓕𝓊𝓇𝒷𝒶𝓁𝓁:\nDo you allow this project to install the following extensions:\n" + window.furballExtensionsToInstall.map(v => {
-              return "- " + v + "\n"
-            }).join("")
-            if (confirm(confimationText)) {
-              window.furballExtensionsInstalled = true
-              const installPromiseChain = window.furballExtensionsToInstall.map(v => new Promise((c, e) => {
-                var scriptToInstall = document.createElement("script")
-                scriptToInstall.async = true
-                scriptToInstall.src = v
-                scriptToInstall.addEventListener("load", c)
-                document.body.appendChild(scriptToInstall)
-              }))
-              Promise.all(installPromiseChain).then(cb)
+      fetch("https://savaka2.github.io/scratch-extensions-directory/list.js").then(r => r.text()).then(txt => {
+        const extData = JSON.parse(txt.slice(17, -1).replace(/\n/g, "").replace(/\/\*.*\*\//g, "").replace(/'/g, "\""))
+        var easyLoadExts = {}
+        extData.filter(e => /^w?$/.test(e.type)).forEach(e => {
+          easyLoadExts[e.title + " by " + e.author.join(", ")] = e.links.JavaScript
+        })
+        const eleNArr = (() => { var a = []; for (var e in easyLoadExts) { a.push(e); }; return a; })()
+        const eleSArr = (() => { var a = []; for (var e in easyLoadExts) { a.push(easyLoadExts[e]); }; return a; })()
+        window.furballExtensionsToInstall = []
+        window.furballExtensionsInstalled = false
+        ScratchExtensions.register("Furball", {
+          blocks: [
+            ["b", "Furball installed?", "fi"],
+            ["w", "require extension from URL %s", "extReq"],
+            ["w", "require %m.easyLoadExts", "eleExtReq"],
+            ["w", "wait to install all required extentions", "extIns"]
+          ],
+          menus: {
+            easyLoadExts: eleNArr
+          },
+          url: "https://github.com/iwotastic/furball"
+        }, {
+          _shutdown() {},
+          _getStatus() {
+            return {status: 2, msg: "Good to go!"}
+          },
+          fi() { return true },
+          extReq(url, cb) {
+            if (url.trim() !== "" && url.length > 16 && url.startsWith("https://")) {
+              window.furballExtensionsToInstall.push(url)
             }else{
-              alert("𝓕𝓊𝓇𝒷𝒶𝓁𝓁:\nThis project will now continue without any extensions, this may cause loss of functionallity.")
+              console.log("Furball | User Error | Invalid URL: " + url)
+            }
+            cb()
+          },
+          eleExtReq(n, cb) {
+            window.furballExtensionsToInstall.push(easyLoadExts[n])
+            cb()
+          },
+          extIns(cb) {
+            if (!window.furballExtensionsInstalled) {
+              const confimationText = "𝓕𝓊𝓇𝒷𝒶𝓁𝓁:\nDo you allow this project to install the following extensions:\n" + window.furballExtensionsToInstall.map(v => {
+                return "- " + (eleSArr.indexOf(v) !== -1 ? eleNArr[eleSArr.indexOf(v)] : "𝑓𝑟𝑜𝑚 " + v) + "\n"
+              }).join("")
+              if (confirm(confimationText)) {
+                window.furballExtensionsInstalled = true
+                const installPromiseChain = window.furballExtensionsToInstall.map(v => new Promise((c, e) => {
+                  var scriptToInstall = document.createElement("script")
+                  scriptToInstall.async = true
+                  scriptToInstall.src = v
+                  scriptToInstall.addEventListener("load", c)
+                  document.body.appendChild(scriptToInstall)
+                }))
+                Promise.all(installPromiseChain).then(cb)
+              }else{
+                alert("𝓕𝓊𝓇𝒷𝒶𝓁𝓁:\nThis project will now continue without any extensions, this may cause the project to be buggy or not work at all. To use this project with extensions reload this page.")
+                cb()
+              }
+            }else{
               cb()
             }
-          }else{
-            cb()
           }
-        }
-      });
+        });
+      })
     }
     var scrTag = document.createElement("script")
     scrTag.src = "data:text/javascript," + encodeURIComponent("window.setTimeout(()=>{(" + install.toString() + ")();},5000);")
