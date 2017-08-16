@@ -158,8 +158,8 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
         })
         const eleNArr = (() => { var a = []; for (var e in easyLoadExts) { a.push(e); }; return a; })()
         const eleSArr = (() => { var a = []; for (var e in easyLoadExts) { a.push(easyLoadExts[e]); }; return a; })()
+        window.furballExtensionsInstalled = []
         window.furballExtensionsToInstall = []
-        window.furballExtensionsInstalled = false
         ScratchExtensions.register("Furball", {
           blocks: [
             ["b", "Furball installed?", "fi"],
@@ -194,21 +194,28 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
               return "- " + (eleSArr.indexOf(v) !== -1 ? eleNArr[eleSArr.indexOf(v)] : "𝑓𝑟𝑜𝑚 𝑈𝑅𝐿 » " + v) + "\n"
             }).join("")
             if (confirm(confimationText)) {
-              window.furballExtensionsInstalled = true
               const installPromiseChain = window.furballExtensionsToInstall.filter(v => window.furballExtensionsInstalled.indexOf(v) === -1).map(v => new Promise((c, e) => {
+                console.log("installing from " + v)
                 var scriptToInstall = document.createElement("script")
                 scriptToInstall.async = true
-                scriptToInstall.src = v.replace(/^http:\/\//, "https://")
-                scriptToInstall.addEventListener("load", c)
+                scriptToInstall.src = v.replace(/^http:\/\//, "https://").replace(/^\.\.\//, "https://savaka2.github.io/")
+                scriptToInstall.addEventListener("load", () => {
+                  console.log("done " + v)
+                  c()
+                })
                 document.body.appendChild(scriptToInstall)
               }))
-              Promise.all(installPromiseChain).then()
+              Promise.all(installPromiseChain).then(() => {
+                window.furballExtensionsInstalled = window.furballExtensionsToInstall
+                window.furballExtensionsToInstall = []
+                cb()
+              })
             }else{
               alert("𝓕𝓊𝓇𝒷𝒶𝓁𝓁:\nThis project will now continue without any extensions, this may cause the project to be buggy or not work at all. To use this project with extensions reload this page.")
+              window.furballExtensionsInstalled = window.furballExtensionsToInstall
+              window.furballExtensionsToInstall = []
               cb()
             }
-            window.furballExtensionsInstalled = window.furballExtensionsToInstall
-            window.furballExtensionsToInstall = []
           }
         });
       })
