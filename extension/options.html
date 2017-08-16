@@ -7,6 +7,15 @@
       padding: 10px;
       margin: 0;
     }
+    .info {
+      border-top: 1px solid #bab9b9;
+      border-bottom: 1px solid #bab9b9;
+      padding: 7px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      color: #939393;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -35,6 +44,10 @@
     as the navbar search engine.
   </label>
   <h2>Notifications</h2>
+  <div class="info">
+    You are currently recieving notifications as <b>@<span id="uname"></span></b>. This was automatically grabbed
+    from your last visit to the Scratch website.
+  </div>
   <label>
     <input type="checkbox" id="notify">
     Show notifications when I have new messages on Scratch.

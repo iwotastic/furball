@@ -1,7 +1,7 @@
 console.log("Start");
 document.addEventListener("DOMContentLoaded", () => {
   console.log("load");
-  chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbWiki", "badge", "searchEngine"], (v) => {
+  chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbWiki", "badge", "searchEngine", "username"], (v) => {
     console.log("done");
     document.getElementById("fixed-nav").checked = v["fixedNavbar"]
     document.getElementById("notify").checked = v["notify"]
@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("bb-wiki").checked = v["bbWiki"]
     document.getElementById("badge").checked = v["badge"]
     document.getElementById("search-engine").value = v["searchEngine"]
+    document.getElementById("uname").innerHTML = v["username"]
   });
   document.getElementById("fixed-nav").addEventListener("change", e => {
     console.log("change");

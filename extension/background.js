@@ -52,9 +52,9 @@ chrome.notifications.onClicked.addListener(id => {
 
 chrome.storage.onChanged.addListener((c, n) => {
   if (n === "sync") {
-    username = (c.username || username).newValue;
-    notify = (c.notify || notify).newValue;
-    badge = (c.badge || badge).newValue;
+    username = (c.username || {newValue: username}).newValue;
+    notify = (c.notify || {newValue: notify}).newValue;
+    badge = (c.badge || {newValue: badge}).newValue;
   }
 });
 
