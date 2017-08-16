@@ -163,9 +163,9 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
         ScratchExtensions.register("Furball", {
           blocks: [
             ["b", "Furball installed?", "fi"],
-            ["w", "require extension from URL %s", "extReq"],
-            ["w", "require %m.easyLoadExts", "eleExtReq"],
-            ["w", "wait to install all required extentions", "extIns"]
+            ["w", "add extension from URL %s to list", "extReq"],
+            ["w", "add %m.easyLoadExts to list", "eleExtReq"],
+            ["w", "wait to install all listed extentions", "extIns"]
           ],
           menus: {
             easyLoadExts: eleNArr
