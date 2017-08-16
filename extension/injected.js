@@ -199,7 +199,7 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
                 const installPromiseChain = window.furballExtensionsToInstall.map(v => new Promise((c, e) => {
                   var scriptToInstall = document.createElement("script")
                   scriptToInstall.async = true
-                  scriptToInstall.src = v
+                  scriptToInstall.src = v.replace(/^http:\/\//, "https://")
                   scriptToInstall.addEventListener("load", c)
                   document.body.appendChild(scriptToInstall)
                 }))
