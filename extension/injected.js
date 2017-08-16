@@ -198,7 +198,7 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
                 console.log("installing from " + v)
                 var scriptToInstall = document.createElement("script")
                 scriptToInstall.async = true
-                scriptToInstall.src = v.replace(/^http:\/\//, "https://").replace(/^\.\.\//, "https://savaka2.github.io/")
+                scriptToInstall.src = (v.startsWith("http://") || v.startsWith("https://") || v.startsWith("../") ? "" : "https://savaka2.github.io/scratch-extensions-directory/") + v.replace(/^http:\/\//, "https://").replace(/^\.\.\//, "https://savaka2.github.io/")
                 scriptToInstall.addEventListener("load", () => {
                   console.log("done " + v)
                   c()
