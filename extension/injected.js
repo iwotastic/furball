@@ -178,7 +178,7 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
           },
           fi() { return true },
           extReq(url, cb) {
-            if (url.trim() !== "" && url.length > 16 && url.startsWith("https://")) {
+            if (url.trim() !== "" && url.length > 15) {
               window.furballExtensionsToInstall.push(url)
             }else{
               console.log("Furball | User Error | Invalid URL: " + url)
@@ -190,27 +190,25 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
             cb()
           },
           extIns(cb) {
-            if (!window.furballExtensionsInstalled) {
-              const confimationText = "𝓕𝓊𝓇𝒷𝒶𝓁𝓁:\nDo you allow this project to install the following extensions:\n" + window.furballExtensionsToInstall.map(v => {
-                return "- " + (eleSArr.indexOf(v) !== -1 ? eleNArr[eleSArr.indexOf(v)] : "𝑓𝑟𝑜𝑚 " + v) + "\n"
-              }).join("")
-              if (confirm(confimationText)) {
-                window.furballExtensionsInstalled = true
-                const installPromiseChain = window.furballExtensionsToInstall.map(v => new Promise((c, e) => {
-                  var scriptToInstall = document.createElement("script")
-                  scriptToInstall.async = true
-                  scriptToInstall.src = v.replace(/^http:\/\//, "https://")
-                  scriptToInstall.addEventListener("load", c)
-                  document.body.appendChild(scriptToInstall)
-                }))
-                Promise.all(installPromiseChain).then(cb)
-              }else{
-                alert("𝓕𝓊𝓇𝒷𝒶𝓁𝓁:\nThis project will now continue without any extensions, this may cause the project to be buggy or not work at all. To use this project with extensions reload this page.")
-                cb()
-              }
+            const confimationText = "𝓕𝓊𝓇𝒷𝒶𝓁𝓁:\nDo you allow this project to install the following extensions:\n" + window.furballExtensionsToInstall.map(v => {
+              return "- " + (eleSArr.indexOf(v) !== -1 ? eleNArr[eleSArr.indexOf(v)] : "𝑓𝑟𝑜𝑚 𝑈𝑅𝐿 » " + v) + "\n"
+            }).join("")
+            if (confirm(confimationText)) {
+              window.furballExtensionsInstalled = true
+              const installPromiseChain = window.furballExtensionsToInstall.filter(v => window.furballExtensionsInstalled.indexOf(v) === -1).map(v => new Promise((c, e) => {
+                var scriptToInstall = document.createElement("script")
+                scriptToInstall.async = true
+                scriptToInstall.src = v.replace(/^http:\/\//, "https://")
+                scriptToInstall.addEventListener("load", c)
+                document.body.appendChild(scriptToInstall)
+              }))
+              Promise.all(installPromiseChain).then()
             }else{
+              alert("𝓕𝓊𝓇𝒷𝒶𝓁𝓁:\nThis project will now continue without any extensions, this may cause the project to be buggy or not work at all. To use this project with extensions reload this page.")
               cb()
             }
+            window.furballExtensionsInstalled = window.furballExtensionsToInstall
+            window.furballExtensionsToInstall = []
           }
         });
       })
