@@ -54,10 +54,6 @@ chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine"], 
   })
 });
 
-// Add back the Discuss tab.
-document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"https://scratch.mit.edu/discuss\">Discuss</a>"
-document.querySelector(isUpdatedPage ? ".link.about" : "li:nth-child(4)").innerHTML = "<a href=\"https://wiki.scratch.mit.edu\">Wiki</a>"
-
 // On blur, clear filters
 searchBox.addEventListener("blur", e => {
   searchFilter = ""
