@@ -18,10 +18,10 @@ if (document.querySelector(isUpdatedPage ? ".profile-name" : ".user-name")) {
 chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine"], (v) => {
   // #BringItBack
   if (v["bbDiscuss"]) {
-    document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"/discuss\">Discuss</a>"
+    document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"https://scratch.mit.edu/discuss\">Discuss</a>"
   }
   if (v["bbWiki"]) {
-    document.querySelector(isUpdatedPage ? ".link.about" : "li:nth-child(4)").innerHTML = "<a href=\"http://wiki.scratch.mit.edu\">Wiki</a>"
+    document.querySelector(isUpdatedPage ? ".link.about" : "li:nth-child(4)").innerHTML = "<a href=\"https://wiki.scratch.mit.edu\">Wiki</a>"
   }
 
   document.querySelector(isUpdatedPage ? "#navigation" : "#topnav").style.position = v["fixedNavbar"] ? "fixed" : "static"
@@ -55,8 +55,8 @@ chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine"], 
 });
 
 // Add back the Discuss tab.
-document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"/discuss\">Discuss</a>"
-document.querySelector(isUpdatedPage ? ".link.about" : "li:nth-child(4)").innerHTML = "<a href=\"http://wiki.scratch.mit.edu\">Wiki</a>"
+document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"https://scratch.mit.edu/discuss\">Discuss</a>"
+document.querySelector(isUpdatedPage ? ".link.about" : "li:nth-child(4)").innerHTML = "<a href=\"https://wiki.scratch.mit.edu\">Wiki</a>"
 
 // On blur, clear filters
 searchBox.addEventListener("blur", e => {
