@@ -13,7 +13,7 @@ const init = () => {
 
   chrome.storage.sync.get(["username", "notify"], (v) => { username = v.username || ""; notify = v.notify });
 
-  console.log("Username fetched!");
+  console.log("Username fetched!", username);
 }
 
 init()
@@ -30,7 +30,7 @@ chrome.alarms.onAlarm.addListener(a => {
             chrome.notifications.create({
               type: "basic",
               iconUrl: "icon128x128.png",
-              title: "New Scratch Message!",
+              title: "New Scratch Message" + (msg_count - prevNotificationAmt > 1 ? "s" : "") + "!",
               message: "You now have " + msg_count + " message" + (msg_count === 1 ? "" : "s") + " on Scratch, click to view."
             });
           }
