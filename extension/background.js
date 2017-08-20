@@ -27,7 +27,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.alarms.onAlarm.addListener(a => {
   console.log("Alarm recieved.");
-  chrome.storage.sync.get(["username", "notify", "prevNotificationAmt"], ({username, notify, prevNotificationAmt}) => {
+  chrome.storage.sync.get(["username", "notify", "prevNotificationAmt", "badge"], ({username, notify, prevNotificationAmt, badge}) => {
     if (a.name === "checkmessages" && notify) {
       console.log("Check recieved.");
       if (username !== "") {
@@ -58,14 +58,6 @@ chrome.notifications.onClicked.addListener(id => {
   chrome.tabs.create({
     url: "https://scratch.mit.edu/messages"
   });
-});
-
-chrome.storage.onChanged.addListener((c, n) => {
-  if (n === "sync") {
-    username = (c.username || {newValue: username}).newValue;
-    notify = (c.notify || {newValue: notify}).newValue;
-    badge = (c.badge || {newValue: badge}).newValue;
-  }
 });
 
 chrome.browserAction.onClicked.addListener(() => {
