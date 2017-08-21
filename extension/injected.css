@@ -48,6 +48,7 @@
 
 #topnav > .innerwrap > div > .logo {
   padding-top: 7px !important;
+  height: 43px !important;
 }
 
 #topnav > .innerwrap > div > .search > input[type=text] {
