@@ -3,6 +3,8 @@ chrome.runtime.onInstalled.addListener(() => {
     periodInMinutes: 1
   })
 
+  chrome.storage.sync.set({prevNotificationAmt: 0}, () => {});
+
   chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbWiki", "badge", "searchEngine"], (v) => {
     if (v["fixedNavbar"] == null || v["fixedNavbar"] == undefined) {
       chrome.storage.sync.set({fixedNavbar: true}, () => {});
