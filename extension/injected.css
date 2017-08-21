@@ -342,3 +342,12 @@ header + .main.container {
   margin-top: 10px;
   border: none;
 }
+
+/* Homepage tweaks */
+
+.activity li img {
+  padding-right: 0 !important;
+  margin-right: 10px !important;
+  border-radius: 100%;
+  box-shadow: 1px 1px 1px rgb(153, 153, 153);
+}
