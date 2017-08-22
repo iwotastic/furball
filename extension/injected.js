@@ -42,7 +42,7 @@ chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine"], 
       sse: "https://scratch.mit.edu/search/projects?q="
     }
     if (searchFilter === "forum") {
-      window.location.assign((v["searchEngine"] !== "sse" ? searchSites[v["searchEngine"]] + "discuss%20" : "https://google.com/search?q=site%3Ascratch.mit.edu%2Fdiscuss%20") + encodeURIComponent(query))
+      window.location.assign((v["searchEngine"] !== "sse" ? searchSites[v["searchEngine"]] + "discuss%2Ftopic%20" : "https://google.com/search?q=site%3Ascratch.mit.edu%2Fdiscuss%2Ftopic%20") + encodeURIComponent(query))
     }else{
       const unameRegex = /^@([a-zA-Z0-9\-_]+)$/
       if (unameRegex.test(query)) {
