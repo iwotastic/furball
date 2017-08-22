@@ -237,7 +237,8 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
   let phosphorusToggle = document.createElement("div")
   phosphorusToggle.className = "action tooltip bottom"
   phosphorusToggle.innerHTML = `<span class="hovertext"><span class="arrow"></span>Use the Phosphorus Player Instead</span><span class="dropdown-toggle text black">Toggle Phosphorus</span>`
-  phosphorusToggle.addEventListener("click", e => {
+
+  const togglePhosphorus = e => {
     if (phosphorusFrame.className === "furball-ph-frame") {
       phosphorusFrame.className = "furball-hidden"
       document.getElementById("scratch").className = ""
@@ -249,7 +250,34 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
       document.querySelector("#see-inside").className = "button grey"
       document.querySelector(".see-inside.icon").className = "see-inside icon gray"
     }
-  })
+  }
+
+  phosphorusToggle.addEventListener("click", togglePhosphorus)
 
   document.getElementById("cloud-log").insertAdjacentElement("afterend", phosphorusToggle)
+
+  // Add "Furball Variables"
+  fetch(`https://projects.scratch.mit.edu/internalapi/project/${pid}/get/`).then(r => r.json()).then(p => {
+    const furballVariableRegex = /^furball *[\-:~=] *([a-z0-9 ]+)$/i
+    p.variables.forEach(({name, value}) => {
+      if (furballVariableRegex.test(name)) {
+        const trueName = name.match(furballVariableRegex)[1].toLowerCase().replace(/ +/g, " ")
+        if (trueName === "use phosphorus") {
+          togglePhosphorus()
+        }else if (trueName === "rich title") {
+          if (!document.querySelector("#title.editable")) {
+            document.getElementById("title").innerHTML = "<h2>" + value + "<h2>"
+          }else{
+            let preview = document.createElement("h4")
+            preview.innerHTML = `<span style="color:#39b676;border:1px solid #39b676;border-radius:3px;background-color:#cdecdc;font-size:10px;padding:3px;text-shadow:none;"><b>Furball Rich Title Preview</b></span> ${value}`
+            document.getElementById("title").appendChild(preview)
+          }
+        }else if (trueName === "tab title") {
+          document.title = value
+        }else{
+          console.log("Unknown Furball Variable | Named: " + name + " | Parsed Name: " + trueName)
+        }
+      }
+    })
+  })
 }
