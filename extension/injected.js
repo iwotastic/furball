@@ -259,7 +259,9 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
   // Add "Furball Variables"
   fetch(`https://projects.scratch.mit.edu/internalapi/project/${pid}/get/`).then(r => r.json()).then(p => {
     const furballVariableRegex = /^furball *[\-:~=] *([a-z0-9 ]+)$/i
-    p.variables.forEach(({name, value}) => {
+    p.variables.forEach((o) => {
+      const {name} = o
+      const value = o.value.toString()
       if (furballVariableRegex.test(name)) {
         const trueName = name.match(furballVariableRegex)[1].toLowerCase().replace(/ +/g, " ")
         if (trueName === "use phosphorus") {
@@ -270,7 +272,7 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
           }else{
             let preview = document.createElement("h4")
             preview.innerHTML = `<span style="color:#39b676;border:1px solid #39b676;border-radius:3px;background-color:#cdecdc;font-size:10px;padding:3px;text-shadow:none;"><b>Furball Rich Title Preview</b></span> ${value}`
-            document.getElementById("title").appendChild(preview)
+            document.getElementById("title").insertAdjacentElement("afterend", preview)
           }
         }else if (trueName === "tab title") {
           document.title = value
