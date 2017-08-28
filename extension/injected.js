@@ -85,7 +85,13 @@ if (/^\/discuss\/([0-9]+)\/?$/.test(path)) {
         if (!isLoading && nextPageToLoad < maxPage) {
           isLoading = true
           nextPageToLoad++
-          fetch("https://scratch.mit.edu/discuss/" + path.match(/^\/discuss\/([0-9]+)/)[1] + "/?page=" + nextPageToLoad).then(r => {
+          fetch(new Request("https://scratch.mit.edu/discuss/" + path.match(/^\/discuss\/([0-9]+)/)[1] + "/?page=" + nextPageToLoad, {
+            method: "GET",
+            referrer: "https://scratch.mit.edu/discuss/" + path.match(/^\/discuss\/([0-9]+)/)[1] + "/?page=1",
+            headers: {
+              "Cookie": document.cookie
+            }
+          })).then(r => {
             return r.text()
           }).then(t => {
             const content = t.slice(t.indexOf("<tbody>") + 7, t.indexOf("</tbody>"))
