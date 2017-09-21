@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Furball Menu</title>
+  <style>
+  @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(MaterialIcons-Regular.woff2) format('woff2');
+  }
+  html {
+    background-color: #25aff4;
+  }
+  body {
+    margin: 0;
+  }
+  .btn {
+    background-color: #25aff4;
+    color: #ffffff;
+    font-family: "Material Icons", sans-serif;
+    font-size: 18px;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    display: inline-block;
+    border-radius: 0;
+    border: 0;
+    transition: all .1s;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background-color: #2694cb;
+  }
+  </style>
+</head>
+<body>
+<div style="width:120px;">
+<button class="btn" id="view-messages" title="View Messages">notifications</button><button class="btn" id="new-project" title="New Project">add_circle</button><button class="btn" id="settings" title="Furball Settings">menu</button>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>

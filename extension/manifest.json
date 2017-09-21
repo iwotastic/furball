@@ -24,7 +24,8 @@
     "default_icon": {
       "64": "icon64x64.png"
     },
-    "default_title": "Furball - Check Messages"
+    "default_title": "Furball - Check Messages",
+    "default_popup": "popup.html"
   },
   "options_ui": {
     "page": "options.html",
