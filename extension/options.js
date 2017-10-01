@@ -1,7 +1,7 @@
 console.log("Start");
 document.addEventListener("DOMContentLoaded", () => {
   console.log("load");
-  chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbWiki", "badge", "searchEngine", "username"], (v) => {
+  chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbWiki", "badge", "searchEngine", "username", "scrollableQuotes"], (v) => {
     console.log("done");
     document.getElementById("fixed-nav").checked = v["fixedNavbar"]
     document.getElementById("notify").checked = v["notify"]
@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("badge").checked = v["badge"]
     document.getElementById("search-engine").value = v["searchEngine"]
     document.getElementById("uname").innerHTML = v["username"]
+    document.getElementById("scrollable-quotes").checked = v["scrollableQuotes"]
   });
   document.getElementById("fixed-nav").addEventListener("change", e => {
     console.log("change");
@@ -34,5 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("search-engine").addEventListener("change", e => {
     console.log("change");
     chrome.storage.sync.set({searchEngine: e.target.value}, () => {console.log("done");});
+  })
+  document.getElementById("scrollable-quotes").addEventListener("change", e => {
+    console.log("change");
+    chrome.storage.sync.set({scrollableQuotes: e.target.checked}, () => {console.log("done");});
   })
 })

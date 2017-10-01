@@ -15,7 +15,7 @@ if (document.querySelector(isUpdatedPage ? ".profile-name" : ".user-name")) {
 }
 
 // Load settings from Chrome Sync
-chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine"], (v) => {
+chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine", "scrollableQuotes"], (v) => {
   // #BringItBack
   if (v["bbDiscuss"]) {
     document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"https://scratch.mit.edu/discuss\">Discuss</a>"
@@ -24,6 +24,11 @@ chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine"], 
     document.querySelector(isUpdatedPage ? ".link.about" : "li:nth-child(4)").innerHTML = "<a href=\"https://wiki.scratch.mit.edu\">Wiki</a>"
   }
 
+  if (v["scrollableQuotes"]) {
+    document.querySelector("body").classList.add("scrollable-quotes")
+  }
+
+  // Fixed navbar
   document.querySelector(isUpdatedPage ? "#navigation" : "#topnav").style.position = v["fixedNavbar"] ? "fixed" : "static"
   if (isUpdatedPage) {
     document.querySelector("#view").style.marginTop = v["fixedNavbar"] ? "50px" : "0px";

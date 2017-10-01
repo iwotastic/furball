@@ -222,6 +222,11 @@ header + .main.container {
 
 /* Make the forums pretty! */
 
+.scrollable-quotes .post_body_html blockquote {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
 .postavatar > a > img {
   width: 40px;
   height: 40px;

@@ -6,23 +6,26 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.set({prevNotificationAmt: 0}, () => {});
 
   chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbWiki", "badge", "searchEngine"], (v) => {
-    if (v["fixedNavbar"] == null || v["fixedNavbar"] == undefined) {
+    if (v["fixedNavbar"] === null || v["fixedNavbar"] === undefined) {
       chrome.storage.sync.set({fixedNavbar: true}, () => {});
     }
-    if (v["notify"] == null || v["notify"] == undefined) {
+    if (v["notify"] === null || v["notify"] === undefined) {
       chrome.storage.sync.set({notify: true}, () => {});
     }
-    if (v["bbDiscuss"] == null || v["bbDiscuss"] == undefined) {
+    if (v["bbDiscuss"] === null || v["bbDiscuss"] === undefined) {
       chrome.storage.sync.set({bbDiscuss: true}, () => {});
     }
-    if (v["bbWiki"] == null || v["bbWiki"] == undefined) {
+    if (v["bbWiki"] === null || v["bbWiki"] === undefined) {
       chrome.storage.sync.set({bbWiki: false}, () => {});
     }
-    if (v["badge"] == null || v["badge"] == undefined) {
+    if (v["badge"] === null || v["badge"] === undefined) {
       chrome.storage.sync.set({badge: true}, () => {});
     }
-    if (v["searchEngine"] == null || v["searchEngine"] == undefined) {
+    if (v["searchEngine"] === null || v["searchEngine"] === undefined) {
       chrome.storage.sync.set({searchEngine: "google"}, () => {});
+    }
+    if (v["scrollableQuotes"] === null || v["scrollableQuotes"] === undefined) {
+      chrome.storage.sync.set({scrollableQuotes: true}, () => {});
     }
   });
 });
