@@ -15,7 +15,7 @@ if (document.querySelector(isUpdatedPage ? ".profile-name" : ".user-name")) {
 }
 
 // Load settings from Chrome Sync
-chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine", "scrollableQuotes"], (v) => {
+chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine", "scrollableQuotes", "nightMode"], (v) => {
   // #BringItBack
   if (v["bbDiscuss"]) {
     document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"https://scratch.mit.edu/discuss\">Discuss</a>"
@@ -24,8 +24,14 @@ chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine", "
     document.querySelector(isUpdatedPage ? ".link.about" : "li:nth-child(4)").innerHTML = "<a href=\"https://wiki.scratch.mit.edu\">Wiki</a>"
   }
 
+  // Make Quotes Scrollable
   if (v["scrollableQuotes"]) {
     document.querySelector("body").classList.add("scrollable-quotes")
+  }
+
+  // Night Mode
+  if (v["nightMode"]) {
+    document.querySelector("body").classList.add("night-mode")
   }
 
   // Fixed navbar
