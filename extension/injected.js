@@ -14,6 +14,15 @@ if (document.querySelector(isUpdatedPage ? ".profile-name" : ".user-name")) {
   chrome.storage.sync.set({username}, () => {});
 }
 
+// Listen for storage changes
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "sync") {
+    if (changes["nightMode"] !== undefined) {
+      document.querySelector("body").classList.toggle("night-mode")
+    }
+  }
+})
+
 // Load settings from Chrome Sync
 chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine", "scrollableQuotes", "nightMode"], (v) => {
   // #BringItBack

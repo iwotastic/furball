@@ -416,6 +416,8 @@ header + .main.container {
 
 .night-mode #footer {
   background-color: #030303 !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .night-mode #footer select[name=language] {
@@ -428,4 +430,41 @@ header + .main.container {
 
 .night-mode .outer > #projectBox .thumbnail {
   background-color: #bdbdbd !important;
+}
+
+.night-mode .tabs-index li {
+  border: 0 !important;
+}
+
+.night-mode .more-replies {
+  background: #bababa !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+.night-mode .more-replies .pull-down {
+  background: #e2e2e2 !important;
+}
+
+.night-mode .linkst, .night-mode .linksb {
+  color: #fff;
+}
+
+.night-mode .messages-social-list {
+  background-color: #c5c5c5 !important;
+}
+
+.night-mode .comment-text {
+  background: #25aff4 !important;
+  border-color: #25aff4 !important;
+}
+
+.night-mode .comment-text::before {
+  border-bottom-color: #25aff4 !important;
+  border-left-color: #25aff4 !important;
+}
+
+.night-mode .comment-text::after {
+  border-bottom-color: #25aff4 !important;
+  border-left-color: #25aff4 !important;
 }
