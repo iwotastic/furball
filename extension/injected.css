@@ -447,7 +447,7 @@ header + .main.container {
 }
 
 .night-mode .linkst, .night-mode .linksb {
-  color: #fff;
+  color: #fff; /**/
 }
 
 .night-mode .messages-social-list {
