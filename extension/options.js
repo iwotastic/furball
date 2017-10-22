@@ -1,7 +1,7 @@
 console.log("Start");
 document.addEventListener("DOMContentLoaded", () => {
   console.log("load");
-  chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbWiki", "badge", "searchEngine", "username", "scrollableQuotes"], (v) => {
+  chrome.storage.sync.get(["fixedNavbar", "notify", "bbDiscuss", "bbWiki", "badge", "searchEngine", "username", "scrollableQuotes", "autoEmbed", "linkify"], (v) => {
     console.log("done");
     document.getElementById("fixed-nav").checked = v["fixedNavbar"]
     document.getElementById("notify").checked = v["notify"]
@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("search-engine").value = v["searchEngine"]
     document.getElementById("uname").innerHTML = v["username"]
     document.getElementById("scrollable-quotes").checked = v["scrollableQuotes"]
+    document.getElementById("linkify").checked = v["linkify"]
+    document.getElementById("auto-embed").checked = v["autoEmbed"]
   });
   document.getElementById("fixed-nav").addEventListener("change", e => {
     console.log("change");
@@ -39,5 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("scrollable-quotes").addEventListener("change", e => {
     console.log("change");
     chrome.storage.sync.set({scrollableQuotes: e.target.checked}, () => {console.log("done");});
+  })
+  document.getElementById("auto-embed").addEventListener("change", e => {
+    console.log("change");
+    chrome.storage.sync.set({autoEmbed: e.target.checked}, () => {console.log("done");});
+  })
+  document.getElementById("linkify").addEventListener("change", e => {
+    console.log("change");
+    chrome.storage.sync.set({linkify: e.target.checked}, () => {console.log("done");});
   })
 })

@@ -27,6 +27,12 @@ chrome.runtime.onInstalled.addListener(() => {
     if (v["scrollableQuotes"] === null || v["scrollableQuotes"] === undefined) {
       chrome.storage.sync.set({scrollableQuotes: true}, () => {});
     }
+    if (v["autoEmbed"] === null || v["autoEmbed"] === undefined) {
+      chrome.storage.sync.set({autoEmbed: true}, () => {});
+    }
+    if (v["linkify"] === null || v["linkify"] === undefined) {
+      chrome.storage.sync.set({linkify: true}, () => {});
+    }
   });
 });
 

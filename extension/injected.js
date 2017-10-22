@@ -24,7 +24,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
 })
 
 // Load settings from Chrome Sync
-chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine", "scrollableQuotes", "nightMode"], (v) => {
+chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine", "scrollableQuotes", "nightMode", "autoEmbed", "linkify"], (v) => {
   // #BringItBack
   if (v["bbDiscuss"]) {
     document.querySelector(isUpdatedPage ? ".link.tips" : "li:nth-child(3)").innerHTML = "<a href=\"https://scratch.mit.edu/discuss\">Discuss</a>"
@@ -49,6 +49,35 @@ chrome.storage.sync.get(["fixedNavbar", "bbDiscuss", "bbWiki", "searchEngine", "
     document.querySelector("#view").style.marginTop = v["fixedNavbar"] ? "50px" : "0px";
   }else{
     document.querySelector("#content").style.paddingTop = v["fixedNavbar"] ? "50px" : "15px";
+  }
+
+  // If it's a forum topic...
+  if (/^\/discuss\/topic\/([0-9]+)\/?$/.test(path)) {
+    // ...and the user wants to auto embed projects...
+    if (v["autoEmbed"]) {
+      // ...do it
+      const projRegex = /^https:\/\/scratch\.mit\.edu\/projects\/([0-9]+)/
+      Array.from(document.querySelectorAll(".post_body_html a")).forEach(a => {
+        if (projRegex.test(a.href)) {
+          a.innerHTML += " ↓"
+          const apid = a.href.match(projRegex)[1]
+          let embed = document.createElement("iframe")
+          embed.src = `https://scratch.mit.edu/projects/embed/${apid}/?autostart=false`
+          embed.width = "485"
+          embed.height = "402"
+          embed.style.border = "none"
+          embed.style.display = "block"
+          embed.allowFullscreen = true
+          a.insertAdjacentElement("afterend", embed)
+        }
+      })
+    }
+
+    // ...and the user wants auto linkified usernames...
+    if (v["linkify"]) {
+      // Username linkifier (based on https://scratch.mit.edu/discuss/post/2776608/ with a few modifications)
+      Array.from(document.querySelectorAll(".post_body_html,.postsignature")).forEach(post => post.innerHTML = post.innerHTML.replace(/(@([a-zA-Z0-9_-]{2,}))/g, '<a href="https://scratch.mit.edu/users/$2/">$1</a>'));
+    }
   }
 
   // Use a better search.
@@ -160,11 +189,6 @@ if (document.querySelector(".markItUpHeader")) {
     document.querySelector(".markItUpButton" + rep + " > a").innerHTML = replaces[rep]
     document.querySelector(".markItUpButton" + rep + " > a").className = "furball-mi"
   }
-}
-
-if (/^\/discuss\/topic\/([0-9]+)\/?$/.test(path)) {
-  // Username linkifier (based on https://scratch.mit.edu/discuss/post/2776608/ with a few modifications)
-  Array.from(document.querySelectorAll(".post_body_html,.postsignature")).forEach(post => post.innerHTML = post.innerHTML.replace(/(@([a-zA-Z0-9_-]{2,}))/g, '<a href="https://scratch.mit.edu/users/$2/">$1</a>'));
 }
 
 // Is it a project
