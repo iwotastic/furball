@@ -130,7 +130,7 @@ if (/^\/discuss\/([0-9]+)\/?$/.test(path)) {
 if (/^\/mystuff\/?$/.test(path)) {
   // Add infinite scroll
   window.addEventListener("scroll", e => {
-    if (document.body.scrollHeight - document.body.scrollTop < document.body.clientHeight + 300) {
+    if (document.body.scrollHeight - window.scrollY < document.body.clientHeight + 300) {
       document.querySelector("[data-control=load-more]").click()
     }
   })
