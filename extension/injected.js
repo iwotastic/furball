@@ -153,8 +153,8 @@ if (document.querySelector(".markItUpHeader")) {
     "12": "insert_emoticon",
     "13": "language",
     "14": "clear_all",
-    "15": "check_circle",
-    "16": "web"
+    "15": "code",
+    "16": "done_all"
   }
   for (var rep in replaces) {
     document.querySelector(".markItUpButton" + rep + " > a").innerHTML = replaces[rep]
