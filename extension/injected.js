@@ -101,7 +101,7 @@ if (/^\/discuss\/([0-9]+)\/?$/.test(path)) {
     let nextPageToLoad = 1
     let isLoading = false
     window.addEventListener("scroll", e => {
-      if (document.body.scrollHeight - document.body.scrollTop < document.body.clientHeight + 340) {
+      if (document.body.scrollHeight - window.scrollY < document.body.clientHeight + 340) {
         if (!isLoading && nextPageToLoad < maxPage) {
           isLoading = true
           nextPageToLoad++
