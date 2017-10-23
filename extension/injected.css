@@ -403,7 +403,7 @@ header + .main.container {
 }
 
 .night-mode .box > .box-content {
-  background: #bababa !important;
+  background: #444 !important;
 }
 
 .night-mode .news-description > p {
