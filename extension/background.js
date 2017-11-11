@@ -66,13 +66,24 @@ chrome.alarms.onAlarm.addListener(a => {
 });
 
 chrome.notifications.onClicked.addListener(id => {
-  chrome.tabs.create({
-    url: "https://scratch.mit.edu/messages"
-  });
+  if (id === "update_info") {
+    chrome.tabs.create({
+      url: "https://github.com/iwotastic/furball/releases/latest"
+    });
+  }else{
+    chrome.tabs.create({
+      url: "https://scratch.mit.edu/messages"
+    });
+  }
 });
 
-chrome.browserAction.onClicked.addListener(() => {
-  chrome.tabs.create({
-    url: "https://scratch.mit.edu/messages"
-  });
-});
+chrome.runtime.onInstalled.addListener(reason => {
+  if (reason === "update") {
+    chrome.notifications.create("update_info", {
+      type: "basic",
+      iconUrl: "icon128x128.png",
+      title: "Update Get!",
+      message: "Furball's is now on version " + chrome.runtime.getManifest().version + ", click to view update info."
+    });
+  }
+})
