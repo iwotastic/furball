@@ -130,7 +130,7 @@ if (/^\/discuss\/([0-9]+)\/?$/.test(path)) {
     let nextPageToLoad = 1
     let isLoading = false
     window.addEventListener("scroll", e => {
-      if (document.body.scrollHeight - window.scrollY < document.body.clientHeight + 340) {
+      if (document.body.scrollHeight - window.scrollY < document.body.clientHeight + 500) {
         if (!isLoading && nextPageToLoad < maxPage) {
           isLoading = true
           nextPageToLoad++
@@ -161,6 +161,26 @@ if (/^\/mystuff\/?$/.test(path)) {
   window.addEventListener("scroll", e => {
     if (document.body.scrollHeight - window.scrollY < document.body.clientHeight + 300) {
       document.querySelector("[data-control=load-more]").click()
+    }
+  })
+}
+
+// Is it Messages
+if (/^\/messages\/?$/.test(path)) {
+  // Add infinite scroll
+  window.addEventListener("scroll", e => {
+    if (document.body.scrollHeight - window.scrollY < document.body.clientHeight + 400) {
+      document.querySelector("button.messages-social-loadmore.button.white").click()
+    }
+  })
+}
+
+// Is it Explore
+if (/^\/explore\//.test(path)) {
+  // Add infinite scroll
+  window.addEventListener("scroll", e => {
+    if (document.body.scrollHeight - window.scrollY < document.body.clientHeight + 400) {
+      document.querySelector("#projectBox > button.button.white").click()
     }
   })
 }
