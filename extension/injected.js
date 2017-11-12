@@ -165,26 +165,6 @@ if (/^\/mystuff\/?$/.test(path)) {
   })
 }
 
-// Is it Messages
-if (/^\/messages\/?$/.test(path)) {
-  // Add infinite scroll
-  window.addEventListener("scroll", e => {
-    if (document.body.scrollHeight - window.scrollY < document.body.clientHeight + 400) {
-      document.querySelector("button.messages-social-loadmore.button.white").click()
-    }
-  })
-}
-
-// Is it Explore
-if (/^\/explore\//.test(path)) {
-  // Add infinite scroll
-  window.addEventListener("scroll", e => {
-    if (document.body.scrollHeight - window.scrollY < document.body.clientHeight + 400) {
-      document.querySelector("#projectBox > button.button.white").click()
-    }
-  })
-}
-
 // Does it have a rich text editor
 if (document.querySelector(".markItUpHeader")) {
   const replaces = {
