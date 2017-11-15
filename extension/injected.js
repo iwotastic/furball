@@ -143,7 +143,6 @@ if (/^\/discuss\/([0-9]+)\/?$/.test(path)) {
           })).then(r => {
             return r.text()
           }).then(t => {
-            document.querySelector(".box-content > table > tbody").innerHTML += "<tr><td class=\"tc3\">Forum Page #" + nextPageToLoad + "</td><td class=\"tc3\"></td><td class=\"tc3\"></td><td class=\"tc3\"></td></tr>"
             const content = t.slice(t.indexOf("<tbody>") + 7, t.indexOf("</tbody>"))
             document.querySelector(".box-content > table > tbody").innerHTML += content
             isLoading = false;
