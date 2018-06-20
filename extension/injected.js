@@ -137,9 +137,7 @@ if (/^\/discuss\/([0-9]+)\/?$/.test(path)) {
           fetch(new Request("https://scratch.mit.edu/discuss/" + path.match(/^\/discuss\/([0-9]+)/)[1] + "/?page=" + nextPageToLoad, {
             method: "GET",
             referrer: "https://scratch.mit.edu/discuss/" + path.match(/^\/discuss\/([0-9]+)/)[1] + "/?page=1",
-            headers: {
-              "Cookie": document.cookie
-            }
+            credentials: "same-origin"
           })).then(r => {
             return r.text()
           }).then(t => {
