@@ -405,3 +405,7 @@ body[class] {
   border-bottom-color: #25aff4 !important;
   border-left-color: #25aff4 !important;
 }
+
+.night-mode .tclcon {
+  color: #fafafa;
+}
