@@ -32,6 +32,7 @@
   background: #25aff4 !important;
   overflow: hide !important;
   height: 49px !important;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
 }
 
 #topnav > .innerwrap > div > ul > li {
@@ -49,6 +50,20 @@
 #topnav > .innerwrap > div > .logo {
   padding-top: 7px !important;
   height: 43px !important;
+}
+
+#topnav > .innerwrap > div > .logo > .scratch {
+  background-image: url(/images/logo_sm.png) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  display: inline-block !important;
+  transform: scale(.9) !important;
+  transition: all 0.1s !important;
+}
+
+#topnav > .innerwrap > div > .logo > .scratch:hover {
+  transform: scale(1) !important;
 }
 
 #topnav > .innerwrap > div > .search > input[type=text] {

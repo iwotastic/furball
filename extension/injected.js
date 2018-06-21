@@ -195,7 +195,7 @@ if (/^\/projects\/([0-9]+)\/?$/.test(path)) {
   setTimeout(() => {
     const install = () => {
       fetch("https://savaka2.github.io/scratch-extensions-directory/list.js").then(r => r.text()).then(txt => {
-        const extData = JSON.parse(txt.slice(17, -1).replace(/\n/g, "").replace(/\/\*.*\*\//g, "").replace(/'/g, "\""))
+        const extData = JSON.parse(txt.slice(17, -1).replace(/"/g, "\\\"").replace(/'/g, "\"").replace(/\/\*/g, "").replace(/\*\//g, "").replace(/\n/g, ""))
         var easyLoadExts = {}
         extData.filter(e => /^w?$/.test(e.type)).forEach(e => {
           easyLoadExts[e.title + " by " + e.author.join(", ")] = e.links.JavaScript
