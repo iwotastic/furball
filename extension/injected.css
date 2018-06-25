@@ -409,3 +409,23 @@ body[class] {
 .night-mode .tclcon {
   color: #fafafa;
 }
+
+.night-mode .postright {
+  background-color: rgb(64, 64, 64);
+  color: #fff;
+  border-left-color: #7d7d7d;
+}
+
+.night-mode .postfootright {
+  background-color: rgb(64, 64, 64);
+  border-left-color: #7d7d7d;
+  color: #fff;
+}
+
+.night-mode .postleft {
+  background-color: #7d7d7d;
+}
+
+.night-mode .postmsg blockquote {
+  background-color: #7d7d7d;
+}
