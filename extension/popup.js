@@ -15,6 +15,6 @@ document.getElementById("night-mode").addEventListener("click", e => {
   chrome.storage.sync.get(["nightMode"], (v) => { chrome.storage.sync.set({nightMode: !v["nightMode"]}, () => { setNightModeIcon() }); })
 })
 function setNightModeIcon() {
-  chrome.storage.sync.get(["nightMode"], (v) => { document.getElementById("night-mode").innerHTML = v["nightMode"] ? "brightness_5" : "brightness_3" })
+  chrome.storage.sync.get(["nightMode"], (v) => { document.getElementById("night-mode").innerHTML = v["nightMode"] ? "brightness_7" : "brightness_3" })
 }
 setNightModeIcon()
